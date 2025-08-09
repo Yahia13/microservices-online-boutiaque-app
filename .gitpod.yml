@@ -2,35 +2,28 @@ image: gitpod/workspace-full
 
 tasks:
   - name: terraform
-    before: |
-      TF_VERSION=1.7.5
-      curl -fsSL "https://releases.hashicorp.com/terraform/${TF_VERSION}/terraform_${TF_VERSION}_linux_amd64.zip" -o tf.zip
-      sudo unzip -o tf.zip -d /usr/local/bin && rm tf.zip
+    before:
+      ./bin/terraform-cli-install
 
   - name: tools
-    before: |
-      sudo apt-get update -y
-      sudo apt-get install -y tree jq unzip python3-pip
-      pip3 install --upgrade pip ansible
+    before:
+      sudo apt-get update
+      sudo apt-get install -y tree
 
   - name: aws-cli
-    env:
-      AWS_CLI_AUTO_PROMPT: on-partial
-    before: |
-      curl -sS "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o awscliv2.zip
-      unzip -q awscliv2.zip && sudo ./aws/install -i /usr/local/aws -b /usr/local/bin
-      rm -rf aws awscliv2.zip
-      gp env -u AWS_PAGER  # Disable AWS pager globally
+    before:
+      ./bin/aws-cli-install
 
   - name: kubectl
-    before: |
-      KVER=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)
-      curl -L "https://storage.googleapis.com/kubernetes-release/release/${KVER}/bin/linux/amd64/kubectl" -o kubectl
-      sudo install kubectl /usr/local/bin/kubectl && rm kubectl
-
+    before:
+      ./bin/kubectl
+      
   - name: helm
-    before: |
-      curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+    before:
+      ./bin/helm-install
+
+  - name: tree
+    command: sudo apt-get install tree
 
   - name: clear
     command: clear
