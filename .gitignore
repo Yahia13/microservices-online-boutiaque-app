@@ -1,28 +1,38 @@
-.DS_Store
-.eclipse.buildship.core.prefs
-.gradle/
-.idea/
-.kubernetes-manifests-*/
-.project
-.skaffold-*.yaml
+# Terraform
+*.tfstate
+*.tfstate.*
+.terraform/
 .terraform.lock.hcl
-.terraform/*
-.venv/
-.vs/
-.vscode/
-*.iml
-*.ipr
-*.iws
-*.pyc
+crash.log
+
+# Kubernetes
+.kube/
+kubeconfig
+kubeconfig-*
+
+# Helm
+charts/*/tmp/
+*.tgz
+
+# AWS CLI credentials (never commit)
+.aws/
+credentials
+config
+
+# Local env files & secrets
+.env
+*.pem
+*.key
+*.crt
+
+# Gitpod local stuff
+.gitpod/
+.gitpod.yml.bak
+
+# OS / Editor junk
+.DS_Store
+Thumbs.db
 *.swp
-*.tfstate*
-*.tfvars
-*~
-bin/
-build/
-Dockerfile.pip
-node_modules/
-obj/
-pkg/
-release/wi-kubernetes-manifests.yaml
-vendor/
+*.swo
+.idea/
+.vscode/
