@@ -94,3 +94,4 @@ resource "aws_nat_gateway" "NAT_gw_public1b" {
 }
 
 
+
