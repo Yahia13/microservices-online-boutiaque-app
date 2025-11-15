@@ -43,7 +43,7 @@
   },
 
   // Install tree, jq, unzip, and ansible like your old tasks
-"postCreateCommand": "sudo apt-get update && sudo apt-get install -y tree jq unzip python3-pip ansible",
+  "postCreateCommand": "sudo apt-get update && sudo apt-get install -y tree jq unzip python3-pip ansible && mkdir -p /workspace/.aws && echo 'export AWS_SHARED_CREDENTIALS_FILE=/workspace/.aws/credentials' >> ~/.zshrc && echo 'export AWS_CONFIG_FILE=/workspace/.aws/config' >> ~/.zshrc && echo 'export AWS_PROFILE=default' >> ~/.zshrc",
 
   "customizations": {
     "vscode": {
